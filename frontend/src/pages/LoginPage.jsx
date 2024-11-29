@@ -16,7 +16,7 @@ const LoginPage = () => {
         login(formData);
     }
   return (
-    <div className="min-h-screen grid lg:grid-cols-2">
+    <div className="min-h-screen grid">
       {/* left side */}
       <div className="flex flex-col justify-center items-center p-6 sm:p-12">
         <div className="w-full max-w-md space-y-8">
@@ -29,9 +29,9 @@ const LoginPage = () => {
               >
                 <MessageSquare className="size-6 text-primary" />
               </div>
-              <h1 className="text-2xl font-bold mt-2">Create Account</h1>
+              <h1 className="text-2xl font-bold mt-2">Sign In</h1>
               <p className="text-base-content/60">
-                Get started with your free account
+                Login with your free account
               </p>
             </div>
           </div>
