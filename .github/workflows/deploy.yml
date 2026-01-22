@@ -1,0 +1,32 @@
+name: Deploy to Ubuntu VPS
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Deploy using SSH
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.HOST }}            # Your VPS IP
+          username: ${{ secrets.USERNAME }}    # Usually 'root'
+          key: ${{ secrets.SSH_PRIVATE_KEY }} # Private key without passphrase
+          port: 22
+          script: |
+            echo "🔹 Navigating to project directory..."
+            cd /root/mern-chat-app/backend/src
+
+            echo "🔹 Pulling latest code from GitHub..."
+            git pull origin main
+
+            echo "🔹 Installing dependencies..."
+            npm install
+
+            echo "🔹 Restarting PM2 process..."
+            pm2 restart mern-chat-backend
+
+            echo "✅ Deployment finished."
