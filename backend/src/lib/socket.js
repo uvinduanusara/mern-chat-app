@@ -8,7 +8,7 @@ dotenv.config();
 const app = express();
 const server = http.createServer(app);
 
-const defaultOrigins = ["http://localhost:5173"];
+const defaultOrigins = [process.env.FRONTEND_URL,"http://localhost:5173"];
 if (process.env.FRONTEND_URL) {
   defaultOrigins.push(process.env.FRONTEND_URL);
 }
